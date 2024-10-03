@@ -26,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
         textViewCount = findViewById(R.id.textViewCount);
         buttonIncrementCounter = findViewById(R.id.buttonIncrement);
         userText = findViewById(R.id.userText);
+        String text = userText.toString();
         checkBox = findViewById(R.id.checkBox);
         changeBGColor = findViewById(R.id.changeBGColor);
 
         if(savedInstanceState != null){
             count = savedInstanceState.getInt(KEY_COUNT);
+            text = savedInstanceState.getString(text);
+            userText.setText(text);
         }
         updateCountText();
 
@@ -49,13 +52,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
+        String text = userText.getText().toString();
         outState.putInt(KEY_COUNT, count);
-
-    }
-    private void bgColor(){
-        if(changeBGColor.isActivated()){
-
-        }
+        outState.putString(text, text);
     }
 
 }
