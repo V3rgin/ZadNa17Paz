@@ -11,13 +11,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String KEY_COUNT = "count";
-    private static final String TEXT = "text";
-    private static final String CB = "cb";
-    private static final String BGC = "bgc";
-
+    /*    private static final String KEY_COUNT = "count";
+        private static final String TEXT = "text";
+        private static final String CB = "cb";
+        private static final String BGC = "bgc";
+    */
     private TextView textViewCount;
     private TextView optionSet;
     private TextView test;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText userText;
     private CheckBox checkBox;
     private Switch changeBGColor;
-
+/*
     private int count = 0;
     private String textSave;
     private boolean checkBoxSave;
@@ -123,6 +124,29 @@ public class MainActivity extends AppCompatActivity {
         outState.putBoolean(CB, checkBoxSave);
         outState.putBoolean(BGC, bgColorSave);
         outState.putString(TEXT, textSave);
+    }*/
+
+    private CountViewModel countViewModel; // Deklaracja ViewModel
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        textViewCount = findViewById(R.id.textViewCount);
+        Button buttonIncrement = findViewById(R.id.buttonIncrement);
+        // Inicjalizacja TextView Button buttonIncrement = findViewById(R.id.buttonIncrement); // Inicjalizacja
+// Utworzenie lub pobranie instancji CountViewModel
+        countViewModel = new ViewModelProvider(this).get(CountViewModel.class);
+        updateCountText();
+        buttonIncrement.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                countViewModel.incrementCount(); // Zwiększ wartość licznika w
+                updateCountText(); // Aktualizuj widok TextView
+            }
+        });
     }
 
+    private void updateCountText() {
+        textViewCount.setText("Licznik: " + countViewModel.getCount()); // Ustaw tekst
+    }
 }
