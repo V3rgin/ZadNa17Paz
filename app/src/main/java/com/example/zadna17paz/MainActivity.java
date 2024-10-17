@@ -16,20 +16,20 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_COUNT = "count";
     private static final String TEXT = "text";
     private static final String CB = "cb";
-    private static final String BGC = "bgc";
+    private static final String BGC = "bgc";// deklaracja i inicjalizacja kluczy
 
     private TextView textViewCount;
     private TextView optionSet;
     private TextView test;
     private Button buttonIncrementCounter;
     private EditText userText;
-    private CheckBox checkBox;
+    private CheckBox checkBox; //deklaracja zmiennych uzywanych
     private Switch changeBGColor;
 
     private int count = 0;
     private String textSave;
     private boolean checkBoxSave;
-    private boolean bgColorSave;
+    private boolean bgColorSave; //deklaracja zmiennych zapisu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +42,20 @@ public class MainActivity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkBox);
         changeBGColor = findViewById(R.id.changeBGColor);
         optionSet = findViewById(R.id.optionSet);
-        test = findViewById(R.id.test);
+        test = findViewById(R.id.test); //inicjalizacja zmiennych zapisu
 
         if(savedInstanceState != null){
             count = savedInstanceState.getInt(KEY_COUNT);
             textSave = savedInstanceState.getString(TEXT);
-            checkBoxSave = savedInstanceState.getBoolean(CB);
+            checkBoxSave = savedInstanceState.getBoolean(CB); //zapisywanie instancji
             bgColorSave = savedInstanceState.getBoolean(BGC);
         }
         updateCountText();
         updateCheckBox();
         updateBGColor();
-        updateText();
+        updateText(); //funkcje
 
-        test.append(count + textSave + checkBoxSave + bgColorSave);
+        test.append(count + textSave + checkBoxSave + bgColorSave); //testowamnie działania
         buttonIncrementCounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
